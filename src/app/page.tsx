@@ -1,5 +1,6 @@
 import AboutSection from "@/components/custom/AboutSection";
 import { HeroSection } from "@/components/custom/HeroSection";
+import OurService from "@/components/custom/OurService";
 import { Spotlight } from "@/components/ui/spotlight-new";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <main className="max-w-7xl flex flex-col gap-8 items-center sm:items-start w-full relative">
         <HeroSection />
         <AboutSection />
+        <OurService />
         <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
           Footer
         </footer>
