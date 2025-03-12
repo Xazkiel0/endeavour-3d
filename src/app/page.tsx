@@ -1,19 +1,20 @@
-import AboutSection from "@/components/custom/AboutSection";
+// import AboutSection from "@/components/custom/AboutSection";
+import FAQSection from "@/components/custom/FAQSection";
 import { HeroSection } from "@/components/custom/HeroSection";
 import OurService from "@/components/custom/OurService";
+import TeamSection from "@/components/custom/TeamSection";
 import { Spotlight } from "@/components/ui/spotlight-new";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col items-center justify-items-center w-full overflow-hidden">
+    <div className="relative flex flex-col items-center justify-items-center w-full">
       <Spotlight />
-      <main className="max-w-7xl flex flex-col gap-8 items-center sm:items-start w-full relative">
+      <main className="flex flex-col gap-8 items-center sm:items-start w-full">
         <HeroSection />
-        <AboutSection />
+        {/* <AboutSection /> */}
         <OurService />
-        <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-          Footer
-        </footer>
+        <TeamSection />
+        <FAQSection />
       </main>
     </div>
   );
