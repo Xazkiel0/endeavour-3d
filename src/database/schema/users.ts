@@ -1,9 +1,49 @@
 import { UserRoles } from "@/app/types";
-import { integer, pgTable, serial, uuid, varchar } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import { pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: integer("id").primaryKey(),
-  username: varchar({ length: 255 }).notNull().unique(),
+  id: uuid().primaryKey().defaultRandom(),
+  username: varchar({ length: 255 }).notNull(),
   password: varchar({ length: 255 }).notNull(),
-  role: varchar({ length: 127 }).notNull(),
+  role: varchar({ length: 127 }).$type<UserRoles>().notNull(),
+});
+
+export const usersRelations = relations(users, ({ one }) => ({
+  profiles: one(profiles),
+}));
+export const profiles = pgTable("profiles", {
+  id: uuid().primaryKey().defaultRandom(),
+  user_id: uuid("user_id")
+    .default("00000000-0000-0000-0000-000000000000")
+    .references(() => users.id),
+  img_profile: varchar({ length: 255 }),
+  img_cover: varchar({ length: 255 }),
+  bio: text(),
+  location: varchar({ length: 255 }),
+  first_journey: varchar({ length: 255 }),
+  banner_spotlight: varchar({ length: 255 }),
+  // jobSpecs: uuid().references(() => jobSpecs.id),
+  // jobLevel: uuid().references(() => jobLevels.id),
+});
+
+export const profilesRelations = relations(profiles, ({ one }) => ({
+  users: one(users, { fields: [profiles.user_id], references: [users.id] }),
+}));
+
+export const divisions = pgTable("divisions", {
+  id: uuid().primaryKey().defaultRandom(),
+  name: varchar({ length: 255 }).notNull(),
+  description: varchar({ length: 255 }),
+});
+
+export const jobSpecs = pgTable("job_specs", {
+  id: uuid().primaryKey().defaultRandom(),
+  name: varchar({ length: 255 }).notNull(),
+  // division: uuid().references(() => divisions.id),
+});
+
+export const jobLevels = pgTable("job_levels", {
+  id: uuid().primaryKey().defaultRandom(),
+  name: varchar({ length: 255 }).notNull(),
 });

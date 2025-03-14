@@ -1,66 +1,50 @@
-import { UserRoles } from "@/app/types";
 import { buildSchema } from "drizzle-graphql";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
-import { randomUUID } from "crypto";
-import { gql } from "graphql-tag";
-import { db } from "@/database/db";
+import { db } from "../../../database/db";
+import {
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLSchema,
+} from "graphql";
+import { users } from "@/database/schema/users";
 
-const users: {
-  id: string;
-  username: string;
-  password: string;
-  role?: UserRoles;
-}[] = [
-  { id: "1", username: "Alice", password: "password", role: UserRoles.ADMIN },
-  { id: "2", username: "Bob", password: "password" },
-];
-
-const typeDefs = gql`
-  enum UserRoles {
-    ADMIN
-    USER
-  }
-  type User {
-    id: ID!
-    username: String!
-    role: UserRoles
-    password: String
-  }
-
-  type Users {
-    users: [User!]
-  }
-
-  type Query {
-    hello: String
-    users: [User!]
-    user(id: ID!): User
-  }
-  type Mutation {
-    createUser(username: String!, password: String): Users
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => "Hello world!",
-    users: () => users,
-    user: (_, { id }: { id: string }) => users.find((user) => user.id === id),
-  },
-  Mutation: {
-    createUser: (_, { username }: { username: string }) => {
-      const id = randomUUID();
-      users.push({ id, username, password: "password" });
-      return { users };
+const { entities } = buildSchema(db);
+const schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: "Query",
+    fields: {
+      users: entities.queries.users,
+      user: entities.queries.usersSingle,
     },
-  },
-};
-
-const { schema } = buildSchema(db);
+  }),
+  mutation: new GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+      createUser: {
+        type: new GraphQLList(new GraphQLNonNull(entities.types.UsersItem)),
+        args: {
+          where: {
+            type: entities.inputs.UsersFilters,
+          },
+          data: {
+            type: new GraphQLNonNull(entities.inputs.UsersInsertInput),
+          },
+        },
+        resolve: async (_, { data }) => {
+          const res = await db.insert(users).values(data).returning();
+          return res;
+        },
+      },
+    },
+  }),
+  types: [...Object.values(entities.types), ...Object.values(entities.inputs)],
+});
 
 const server = new ApolloServer({
   schema,
+
   // typeDefs,
   // resolvers,
 });
