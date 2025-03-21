@@ -1,6 +1,6 @@
 import { UserRoles } from "@/app/types";
-import { relations } from "drizzle-orm";
-import { pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
+import { date, pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm/relations";
 
 export const users = pgTable("users", {
   id: uuid().primaryKey().defaultRandom(),
@@ -10,18 +10,21 @@ export const users = pgTable("users", {
 });
 
 export const usersRelations = relations(users, ({ one }) => ({
-  profiles: one(profiles),
+  profile: one(profiles),
 }));
+
 export const profiles = pgTable("profiles", {
   id: uuid().primaryKey().defaultRandom(),
+  fullname: varchar({ length: 255 }),
+  date_of_birth: date().default("2000-01-01"),
   user_id: uuid("user_id")
     .default("00000000-0000-0000-0000-000000000000")
-    .references(() => users.id),
+    .notNull(),
   img_profile: varchar({ length: 255 }),
   img_cover: varchar({ length: 255 }),
   bio: text(),
   location: varchar({ length: 255 }),
-  first_journey: varchar({ length: 255 }),
+  first_journey: date().defaultNow(),
   banner_spotlight: varchar({ length: 255 }),
   // jobSpecs: uuid().references(() => jobSpecs.id),
   // jobLevel: uuid().references(() => jobLevels.id),

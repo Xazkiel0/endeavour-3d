@@ -1,3 +1,4 @@
+"use client";
 // import AboutSection from "@/components/custom/AboutSection";
 import FAQSection from "@/components/custom/FAQSection";
 import { HeroSection } from "@/components/custom/HeroSection";
@@ -8,14 +9,13 @@ import { Spotlight } from "@/components/ui/spotlight-new";
 export default function Home() {
   return (
     <div className="relative flex flex-col items-center justify-items-center w-full">
-      <Spotlight />
+      {/* <Spotlight />
       <main className="flex flex-col gap-8 items-center sm:items-start w-full">
         <HeroSection />
-        {/* <AboutSection /> */}
         <OurService />
         <TeamSection />
         <FAQSection />
-      </main>
+      </main> */}
     </div>
   );
 }

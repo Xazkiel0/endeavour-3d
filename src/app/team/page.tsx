@@ -1,7 +1,8 @@
+import QueryGraphQL from "@/components/custom/QueryGraphQL";
 import TeamItems from "@/components/custom/TeamItems";
 import React from "react";
 
-const page = () => {
+const Page = () => {
   const members = [
     {
       name: "John Doe",
@@ -52,6 +53,7 @@ const page = () => {
       link: "/profile/user4",
     },
   ];
+
   return (
     <div>
       <div className="relative mx-auto w-full h-[400px] rounded">
@@ -63,7 +65,7 @@ const page = () => {
           </div>
         </div>
       </div>
-
+      <div className="">{/* <QueryGraphQL /> */}</div>
       <div className="flex flex-col gap-12 max-w-72 sm:max-w-lg md:max-w-2xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto mt-20">
         <div className="flex flex-col">
           <div className="h-fit gap-4 text-4xl md:text-6xl font-bold text-center my-12 bg-opacity-50 text-transparent">
@@ -109,4 +111,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

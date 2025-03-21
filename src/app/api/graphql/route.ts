@@ -8,7 +8,7 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
 } from "graphql";
-import { users } from "@/database/schema/users";
+import { profiles, users } from "@/database/schema/users";
 
 const { entities } = buildSchema(db);
 const schema = new GraphQLSchema({
@@ -17,6 +17,8 @@ const schema = new GraphQLSchema({
     fields: {
       users: entities.queries.users,
       user: entities.queries.usersSingle,
+      profiles: entities.queries.profiles,
+      profile: entities.queries.profilesSingle,
     },
   }),
   mutation: new GraphQLObjectType({
