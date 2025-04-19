@@ -8,7 +8,7 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
 } from "graphql";
-import { profiles, users } from "@/database/schema/users";
+import { users } from "@/database/schema/users";
 
 const { entities } = buildSchema(db);
 const schema = new GraphQLSchema({
