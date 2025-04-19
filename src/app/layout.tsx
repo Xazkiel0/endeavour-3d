@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProviderWrapper from "@/components/custom/ThemeProvider";
 import Link from "next/link";
+import QueryClientWrapper from "@/components/custom/QueryClientWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,90 +31,90 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProviderWrapper>
-          {/* <QueryClientWrapper> */}
-          <div className="overflow-hidden">
-            {/* <ApolloWrapper>{children}</ApolloWrapper> */}
-            {children}
-            <footer className="gap-6 w-full mt-20 -z-50">
-              <div className="flex flex-row flex-wrap max-w-72 sm:max-w-lg md:max-w-2xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto py-6">
-                <div className=" basis-full xl:basis-1/2 mb-12">
-                  <Link href={"/"}>
-                    <h1 className="font-bold text-3xl md:text-3xl">
-                      Endeavour3D
-                    </h1>
-                  </Link>
-                  <p className="text-base tracking-wide mt-4 md:max-w-80">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Quibusdam ipsum expedita!
-                  </p>
-                </div>
-                <div className="flex flex-row flex-wrap sm:flex-nowrap gap-20 basis-full xl:basis-1/2">
-                  <div className="flex flex-col gap-4">
-                    <h2 className="font-bold text-nowrap">Quick Links</h2>
-                    <ul className="flex flex-col gap-2">
-                      <li>
-                        <Link href={"#"}>Home</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>About</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Services</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Team</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>FAQ</Link>
-                      </li>
-                    </ul>
+          <QueryClientWrapper>
+            <div className="overflow-hidden">
+              {/* <ApolloWrapper>{children}</ApolloWrapper> */}
+              {children}
+              <footer className="gap-6 w-full mt-20 -z-50">
+                <div className="flex flex-row flex-wrap max-w-72 sm:max-w-lg md:max-w-2xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto py-6">
+                  <div className=" basis-full xl:basis-1/2 mb-12">
+                    <Link href={"/"}>
+                      <h1 className="font-bold text-3xl md:text-3xl">
+                        Endeavour3D
+                      </h1>
+                    </Link>
+                    <p className="text-base tracking-wide mt-4 md:max-w-80">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Quibusdam ipsum expedita!
+                    </p>
                   </div>
-                  <div className="flex flex-col gap-4">
-                    <h2 className="font-bold text-nowrap">Company</h2>
-                    <ul className="flex flex-col gap-2 *:text-nowrap">
-                      <li>
-                        <Link href={"#"}>Our Services</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Our Teams</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Our Projects</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Blog</Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h2 className="font-bold text-nowrap">Follow Us</h2>
-                    <ul className="flex flex-col gap-2 *:text-nowrap">
-                      <li>
-                        <Link href={"#"}>LinkedIn</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Instagram</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Twitter</Link>
-                      </li>
-                      <li>
-                        <Link href={"#"}>Facebook</Link>
-                      </li>
-                    </ul>
+                  <div className="flex flex-row flex-wrap sm:flex-nowrap gap-20 basis-full xl:basis-1/2">
+                    <div className="flex flex-col gap-4">
+                      <h2 className="font-bold text-nowrap">Quick Links</h2>
+                      <ul className="flex flex-col gap-2">
+                        <li>
+                          <Link href={"#"}>Home</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>About</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Services</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Team</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>FAQ</Link>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <h2 className="font-bold text-nowrap">Company</h2>
+                      <ul className="flex flex-col gap-2 *:text-nowrap">
+                        <li>
+                          <Link href={"#"}>Our Services</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Our Teams</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Our Projects</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Blog</Link>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <h2 className="font-bold text-nowrap">Follow Us</h2>
+                      <ul className="flex flex-col gap-2 *:text-nowrap">
+                        <li>
+                          <Link href={"#"}>LinkedIn</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Instagram</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Twitter</Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>Facebook</Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="border-t border-slate-200/20">
-                <div className="flex flex-row flex-wrap max-w-72 sm:max-w-lg md:max-w-2xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto gap-4 py-6">
-                  <p className="text-sm tracking-wide font-light">
-                    &copy; 2023 Endeavour3D. All rights reserved.
-                  </p>
+                <div className="border-t border-slate-200/20">
+                  <div className="flex flex-row flex-wrap max-w-72 sm:max-w-lg md:max-w-2xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto gap-4 py-6">
+                    <p className="text-sm tracking-wide font-light">
+                      &copy; 2023 Endeavour3D. All rights reserved.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </footer>
-          </div>
-          {/* </QueryClientWrapper> */}
+              </footer>
+            </div>
+          </QueryClientWrapper>
         </ThemeProviderWrapper>
       </body>
     </html>
