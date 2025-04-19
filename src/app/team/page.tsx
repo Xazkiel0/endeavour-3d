@@ -1,4 +1,4 @@
-import QueryGraphQL from "@/components/custom/QueryGraphQL";
+// import QueryGraphQL from "@/components/custom/QueryGraphQL";
 import TeamItems from "@/components/custom/TeamItems";
 import React from "react";
 

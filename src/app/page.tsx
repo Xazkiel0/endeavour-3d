@@ -9,13 +9,13 @@ import { Spotlight } from "@/components/ui/spotlight-new";
 export default function Home() {
   return (
     <div className="relative flex flex-col items-center justify-items-center w-full">
-      {/* <Spotlight />
+      <Spotlight />
       <main className="flex flex-col gap-8 items-center sm:items-start w-full">
         <HeroSection />
         <OurService />
         <TeamSection />
         <FAQSection />
-      </main> */}
+      </main>
     </div>
   );
 }
